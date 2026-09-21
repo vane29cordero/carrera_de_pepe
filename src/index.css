@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* =========================================================
+   VARIABLES DE IDENTIDAD VISUAL: REYES DE LAS OLAS / PRO SURF
+   ========================================================= */
+:root {
+  --color-ocean-950: #041424;
+  --color-ocean-900: #08213d;
+  --color-ocean-800: #0c335d;
+  --color-ocean-700: #0284c7;
+  --color-ocean-600: #0277bd;
+  --color-ocean-500: #0ea5e9;
+  --color-turquoise: #06b6d4;
+  --color-foam: #f0fdfa;
+  --color-sand-50: #faf7f2;
+  --color-sand-100: #f4ece1;
+  --color-sand-200: #e8dcc8;
+  --color-sunset-gold: #f59e0b;
+  --color-sunset-orange: #ea580c;
+}
+
+/* Animaciones sutiles de oleaje y brisa marina */
+@keyframes flotar {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(0.8deg);
+  }
+}
+
+@keyframes oleaje {
+  0% {
+    transform: translateX(0) translateZ(0) scaleY(1);
+  }
+  50% {
+    transform: translateX(-25%) translateZ(0) scaleY(1.04);
+  }
+  100% {
+    transform: translateX(-50%) translateZ(0) scaleY(1);
+  }
+}
+
+@keyframes pulso-marino {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.anim-flotar {
+  animation: flotar 4s ease-in-out infinite;
+}
+
+.anim-oleaje {
+  animation: oleaje 12s linear infinite;
+}
+
+/* Scrollbar moderno inspirado en el océano */
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #09131f;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #7dd3fc;
+  border-radius: 9999px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #0284c7;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0ea5e9;
+}
+
+/* Tipografía base limpia, nítida y profesional */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
