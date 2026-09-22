@@ -75,7 +75,7 @@ export function CartProvider({ children }) {
 
     const iva = useMemo(() => subtotalGeneral * TASA_IVA, [subtotalGeneral]);
 
-    const totalConIva = useMemo(() => subtotalGeneral + iva, [subtotalGeneral, iva]);
+    const totalConIva = useMemo(() => subtotalGeneral - iva, [subtotalGeneral, iva]);
 
     return (
         <CartContext.Provider
