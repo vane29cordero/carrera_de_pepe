@@ -74,6 +74,7 @@ function Login({ isOpen, onClose }) {
                 type="email"
                 id="correo"
                 placeholder=""
+                {...register("correo", { required: "El correo es obligatorio" })}
                 className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/80 text-slate-900 dark:text-white placeholder-slate-400 text-sm focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 transition-all"
               />
             </div>
@@ -89,13 +90,11 @@ function Login({ isOpen, onClose }) {
               Contraseña
             </label>
             <div className="relative">
-              <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-
-              </span>
               <input
                 type="password"
                 id="contraseña"
                 placeholder=""
+                {...register("contraseña", { required: "La contraseña es obligatoria" })}
                 className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/80 text-slate-900 dark:text-white placeholder-slate-400 text-sm focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 transition-all"
               />
             </div>

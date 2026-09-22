@@ -62,8 +62,8 @@ function Header() {
                   <div className="w-7 h-7 rounded-full bg-cyan-600 text-white flex items-center justify-center text-xs font-bold shadow-xs">
                     <User size={15} />
                   </div>
-                  <span className="hidden sm:inline-block text-xs font-bold text-slate-700 dark:text-slate-200 max-w-[100px] truncate">
-                    {usuario.nombre || usuario.correo?.split("@")[0] || "Surfer"}
+                  <span className="hidden sm:inline-block text-xs font-bold text-slate-700 dark:text-slate-200 max-w-25 truncate">
+                    {usuario?.nombre || usuario?.correo?.split("@")[0] || usuario?.email?.split("@")[0] || "Surfer"}
                   </span>
                 </button>
                 {perfilAbierto && <Perfil onCerrar={() => setPerfilAbierto(false)} />}

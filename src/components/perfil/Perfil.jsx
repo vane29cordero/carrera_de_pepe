@@ -32,6 +32,15 @@ function Perfil({ onCerrar }) {
     usuario.user?.correo ||
     "correo@ejemplo.com";
 
+  // Extraer el nombre de usuario o fallback a la parte antes del @ del correo
+  const nombreUsuario =
+    usuario.nombre ||
+    usuario.username ||
+    usuario.name ||
+    usuario.user?.nombre ||
+    usuario.user?.name ||
+    (correoUsuario !== "correo@ejemplo.com" ? correoUsuario.split("@")[0] : "Usuario Registrado");
+
   return (
     <div className="absolute right-0 mt-3 w-80 bg-white dark:bg-[#08182b] rounded-2xl shadow-2xl ring-1 ring-cyan-200/60 dark:ring-cyan-900/50 p-5 z-50 transition-all duration-300 border border-slate-100 dark:border-slate-800">
       
@@ -55,15 +64,18 @@ function Perfil({ onCerrar }) {
           </div>
         </div>
 
-        <h3 className="text-base font-extrabold text-slate-900 dark:text-white">
-          {usuario.nombre || usuario.name || usuario.user?.nombre || "Surfer Registrado"}
+        {/* Muestra dinámicamente el nombre con el que ingresó */}
+        <h3 className="text-base font-extrabold text-slate-900 dark:text-white capitalize">
+          {nombreUsuario}
         </h3>
 
-        {/* Datos ingresados del usuario */}
+        {/* Muestra el correo ingresado */}
         <div className="mt-4 w-full space-y-2">
           <div className="flex items-center gap-2.5 text-xs text-slate-700 dark:text-slate-200 bg-slate-50 dark:bg-slate-900/70 border border-slate-200/80 dark:border-slate-700/60 rounded-xl px-3 py-2.5 w-full">
             <Mail size={15} className="text-cyan-500 shrink-0" />
-            <span className="truncate font-medium">{correoUsuario}</span>
+            <span className="truncate font-medium" title={correoUsuario}>
+              {correoUsuario}
+            </span>
           </div>
 
           {(usuario.rol || usuario.role) && (

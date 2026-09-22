@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { User, Mail, ArrowLeft, LogOut, Waves, ShieldCheck } from "lucide-react";
+import { User, Mail, ArrowLeft, LogOut, ShieldCheck } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth } from "../../context/AuthContext";
@@ -11,7 +11,7 @@ function PerfilPage() {
 
   const manejarCerrarSesion = () => {
     cerrarSesion();
-    toast.success("Has cerrado sesión. ");
+    toast.success("Has cerrado sesión.");
     navigate("/inicio");
   };
 
@@ -33,6 +33,25 @@ function PerfilPage() {
       </div>
     );
   }
+
+  // Búsqueda dinámica del correo en múltiples propiedades
+  const correoUsuario =
+    usuario.correo ||
+    usuario.email ||
+    usuario.user_email ||
+    usuario.mail ||
+    usuario.user?.email ||
+    usuario.user?.correo ||
+    "correo@ejemplo.com";
+
+  // Búsqueda dinámica del nombre
+  const nombreUsuario =
+    usuario.nombre ||
+    usuario.username ||
+    usuario.name ||
+    usuario.user?.nombre ||
+    usuario.user?.name ||
+    (correoUsuario !== "correo@ejemplo.com" ? correoUsuario.split("@")[0] : "Usuario Registrado");
 
   return (
     <div className="py-10 px-4 transition-colors duration-300">
@@ -60,8 +79,8 @@ function PerfilPage() {
             </div>
 
             <div className="text-center sm:text-left">
-              <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-                {usuario.nombre || usuario.name || "Surfer Registrado"}
+              <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight capitalize">
+                {nombreUsuario}
               </h1>
             </div>
           </div>
@@ -80,11 +99,26 @@ function PerfilPage() {
                 </div>
                 <div className="overflow-hidden">
                   <p className="text-xs text-slate-500 dark:text-slate-400 font-semibold">Correo Electrónico</p>
-                  <p className="text-sm font-bold text-slate-800 dark:text-slate-100 truncate">
-                    {usuario.correo || usuario.email}
+                  <p className="text-sm font-bold text-slate-800 dark:text-slate-100 truncate" title={correoUsuario}>
+                    {correoUsuario}
                   </p>
                 </div>
               </div>
+
+              {/* Rol / Nivel si está presente */}
+              {(usuario.rol || usuario.role) && (
+                <div className="bg-slate-50 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800 p-4 rounded-2xl flex items-center gap-3">
+                  <div className="p-2.5 bg-emerald-100 dark:bg-emerald-950/60 rounded-xl text-emerald-700 dark:text-emerald-300 shadow-xs">
+                    <ShieldCheck size={20} />
+                  </div>
+                  <div className="overflow-hidden">
+                    <p className="text-xs text-slate-500 dark:text-slate-400 font-semibold">Rol del Usuario</p>
+                    <p className="text-sm font-bold text-slate-800 dark:text-slate-100 truncate capitalize">
+                      {usuario.rol || usuario.role}
+                    </p>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 
