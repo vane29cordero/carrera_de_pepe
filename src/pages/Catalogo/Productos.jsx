@@ -183,6 +183,9 @@ function Productos() {
               <div className="flex items-center gap-2 text-slate-700 dark:text-slate-300">
                 <DollarSign size={16} className="text-cyan-600 dark:text-cyan-400 shrink-0" />
                 <span className="text-xs font-medium">Precio Unitario:</span>
+                <span className="text-lg font-black text-cyan-700 dark:text-cyan-400">
+                  $ {(productoSeleccionado.price || 0) }
+                </span>
               </div>
             </div>
 
