@@ -32,6 +32,14 @@ function Carrito() {
   const [cargando, setCargando] = useState(false);
   const [modalConfirmacion, setModalConfirmacion] = useState(false);
 
+  const formatearPrecio = (valor) => {
+    return new Intl.NumberFormat("es-CO", {
+      style: "currency",
+      currency: "COP",
+      minimumFractionDigits: 0,
+    }).format(valor || 0);
+  };
+
   // Fecha actual formateada
   const fechaActual = new Date().toLocaleDateString("es-CO", {
     day: "2-digit",
@@ -71,8 +79,8 @@ function Carrito() {
               subtotal: (pu * p.cantidad),
             };
           }),
-          subtotalNeto: $ (subtotalGeneral),
-          iva: $ (iva),
+          subtotalNeto: $ (formatearPrecio(subtotalGeneral)),
+          iva: $ (formatearPrecio(iva)),
           totalAPagar: $ (totalConIva),
         }),
       });
