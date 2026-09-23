@@ -73,7 +73,7 @@ export default function ProductCard({ producto, onClick }) {
             Precio
           </span>
           <span className="text-cyan-700 dark:text-cyan-400 font-extrabold text-lg">
-            {formatearPrecio(precio)}
+            $ {producto.price}
           </span>
         </div>
 

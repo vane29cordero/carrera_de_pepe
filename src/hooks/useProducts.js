@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export function useProducts(limit = 12) {
+export function useProducts(limit = 6) {
 
     const [productos, setProductos] = useState([]);
     const [cargando, setCargando] = useState(true);
