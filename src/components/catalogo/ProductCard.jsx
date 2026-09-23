@@ -2,15 +2,6 @@ import { ShoppingCart, Eye } from "lucide-react";
 import { toast } from "react-toastify";
 import { useCart } from "../../context/CartContext";
 
-function formatearPrecio(valor) {
-  if (typeof valor !== "number") return "$0";
-  return valor.toLocaleString("es-CO", {
-    style: "currency",
-    currency: "COP",
-    maximumFractionDigits: 0,
-  });
-}
-
 export default function ProductCard({ producto, onClick }) {
   const { agregarAlCarrito } = useCart();
 

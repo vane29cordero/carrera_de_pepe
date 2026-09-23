@@ -6,15 +6,7 @@ import { useCart } from "../../context/CartContext";
 import { toast } from "react-toastify";
 import { X, Plus, Minus, ShoppingCart, Tag, DollarSign, Waves, Loader2 } from "lucide-react";
 
-const LIMITE = 12;
-
-function formatearPrecio(valor) {
-  return valor.toLocaleString("es-CO", {
-    style: "currency",
-    currency: "COP",
-    maximumFractionDigits: 0,
-  });
-}
+const LIMITE = 6;
 
 const PALABRAS_CLAVE_AMPLIAS = [
   "surf", "beach", "summer", "sunglasses", "shorts", "swim", "ocean", "tropical", "sun", "hawaii", "sandals",
@@ -191,9 +183,6 @@ function Productos() {
               <div className="flex items-center gap-2 text-slate-700 dark:text-slate-300">
                 <DollarSign size={16} className="text-cyan-600 dark:text-cyan-400 shrink-0" />
                 <span className="text-xs font-medium">Precio Unitario:</span>
-                <span className="text-xs font-extrabold text-cyan-700 dark:text-cyan-400">
-                  {formatearPrecio(productoSeleccionado.price || productoSeleccionado.precio || 0)}
-                </span>
               </div>
             </div>
 
@@ -229,7 +218,7 @@ function Productos() {
                   Subtotal
                 </span>
                 <span className="text-lg font-black text-cyan-700 dark:text-cyan-400">
-                  {formatearPrecio((productoSeleccionado.price || productoSeleccionado.precio || 0) * cantidad)}
+                  $ {(productoSeleccionado.price || 0) }
                 </span>
               </div>
             </div>

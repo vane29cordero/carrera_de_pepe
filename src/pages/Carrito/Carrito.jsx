@@ -32,15 +32,6 @@ function Carrito() {
   const [cargando, setCargando] = useState(false);
   const [modalConfirmacion, setModalConfirmacion] = useState(false);
 
-  // Formateador de moneda en pesos (COP)
-  const formatearPrecio = (valor) => {
-    return new Intl.NumberFormat("es-CO", {
-      style: "currency",
-      currency: "COP",
-      maximumFractionDigits: 0,
-    }).format(valor || 0);
-  };
-
   // Fecha actual formateada
   const fechaActual = new Date().toLocaleDateString("es-CO", {
     day: "2-digit",
@@ -76,13 +67,13 @@ function Carrito() {
               nombre: nom,
               categoria: cat,
               cantidad: p.cantidad,
-              precioUnitario: formatearPrecio(pu),
-              subtotal: formatearPrecio(pu * p.cantidad),
+              precioUnitario: (pu),
+              subtotal: (pu * p.cantidad),
             };
           }),
-          subtotalNeto: formatearPrecio(subtotalGeneral),
-          iva: formatearPrecio(iva),
-          totalAPagar: formatearPrecio(totalConIva),
+          subtotalNeto: $ (subtotalGeneral),
+          iva: $ (iva),
+          totalAPagar: $ (totalConIva),
         }),
       });
 
@@ -210,7 +201,7 @@ function Carrito() {
                             {nombre}
                           </h3>
                           <div className="flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400">
-                            <span>Precio unitario: <strong className="text-slate-700 dark:text-slate-300">{formatearPrecio(precioUnitario)}</strong></span>
+                            <span>Precio unitario: <strong className="text-slate-700 dark:text-slate-300">$ {(precioUnitario)}</strong></span>
                           </div>
                         </div>
                       </div>
@@ -247,7 +238,7 @@ function Carrito() {
                             Subtotal
                           </span>
                           <span className="text-sm sm:text-base font-extrabold text-cyan-700 dark:text-cyan-400">
-                            {formatearPrecio(subtotalItem)}
+                            $ {(subtotalItem)}
                           </span>
                         </div>
 
@@ -308,20 +299,20 @@ function Carrito() {
                 <div className="flex justify-between text-slate-600 dark:text-slate-400">
                   <span>Subtotal Neto</span>
                   <span className="font-semibold text-slate-800 dark:text-slate-200">
-                    {formatearPrecio(subtotalGeneral)}
+                    $ {(subtotalGeneral)}
                   </span>
                 </div>
                 <div className="flex justify-between text-slate-600 dark:text-slate-400">
                   <span>IVA Incluido (19%)</span>
                   <span className="font-semibold text-slate-800 dark:text-slate-200">
-                    {formatearPrecio(iva)}
+                    $ {(iva)}
                   </span>
                 </div>
 
                 <div className="border-t border-slate-200 dark:border-slate-800 pt-3 flex justify-between items-center">
                   <span className="text-sm font-extrabold text-slate-900 dark:text-white">Total a Pagar</span>
                   <span className="text-xl font-black text-cyan-700 dark:text-cyan-400">
-                    {formatearPrecio(totalConIva)}
+                    $ {(totalConIva)}
                   </span>
                 </div>
               </div>
@@ -358,7 +349,7 @@ function Carrito() {
 
             <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
               Estás a punto de procesar tu orden <strong className="text-cyan-600 dark:text-cyan-400">{ordenId}</strong> por un total de{" "}
-              <strong className="text-slate-900 dark:text-white">{formatearPrecio(totalConIva)}</strong> con {carrito.length} {carrito.length === 1 ? "producto" : "productos"}.
+              <strong className="text-slate-900 dark:text-white">$ {(totalConIva)}</strong> con {carrito.length} {carrito.length === 1 ? "producto" : "productos"}.
             </p>
 
             <div className="pt-2 flex items-center justify-center gap-3">
