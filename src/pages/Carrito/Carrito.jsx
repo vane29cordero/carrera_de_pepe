@@ -33,11 +33,8 @@ function Carrito() {
   const [modalConfirmacion, setModalConfirmacion] = useState(false);
 
   const formatearPrecio = (valor) => {
-    return new Intl.NumberFormat("es-CO", {
-      style: "currency",
-      currency: "COP",
-      minimumFractionDigits: 0,
-    }).format(valor || 0);
+    if (valor === undefined || valor === null) return "0";
+    return typeof valor === "number" ? valor.toFixed(2) : valor;
   };
 
   // Fecha actual formateada
@@ -62,10 +59,10 @@ function Carrito() {
           Accept: "application/json",
         },
         body: JSON.stringify({
-          _subject: `Confirmación Pedido ${ordenId} - Reyes de las Olas`,
+          _subject: `Confirmación Pedido ${ordenId}`,
           ordenId,
           fecha: fechaActual,
-          cliente: usuario ? usuario.nombre || usuario.correo : "Cliente Surf Club",
+          cliente: usuario ? usuario.nombre || usuario.correo : "Cliente",
           correo: usuario?.correo || "No registrado",
           pedido: carrito.map((p) => {
             const nom = p.nombre || p.title || p.name;
@@ -86,7 +83,7 @@ function Carrito() {
       });
 
       if (respuesta.ok) {
-        toast.success(`¡Pedido ${ordenId} enviado con éxito! Tu orden de surf está en camino.`);
+        toast.success(`¡Pedido ${ordenId} enviado con éxito! Tu orden está en camino.`);
         vaciarCarrito();
         try {
           localStorage.removeItem("carrito");
@@ -105,7 +102,7 @@ function Carrito() {
 
   const manejarClickEnviarPedido = () => {
     if (!usuario) {
-      toast.warning("Debes iniciar sesión con tu cuenta de surfer para enviar el pedido.");
+      toast.warning("Debes iniciar sesión con tu cuenta para enviar el pedido.");
       return;
     }
 
@@ -129,7 +126,7 @@ function Carrito() {
               Carrito de Productos
             </h1>
             <p className="text-sm sm:text-base text-slate-500 dark:text-slate-400 font-medium mt-1">
-              Verifica cada ítem, calcula el IVA y envía tu pedido oficial de surf
+              Verifica cada ítem, calcula el IVA y envía tu pedido oficial
             </p>
           </div>
 
@@ -307,13 +304,13 @@ function Carrito() {
                 <div className="flex justify-between text-slate-600 dark:text-slate-400">
                   <span>Subtotal Neto</span>
                   <span className="font-semibold text-slate-800 dark:text-slate-200">
-                    $ {(subtotalGeneral)}
+                    $ {formatearPrecio(subtotalGeneral)}
                   </span>
                 </div>
                 <div className="flex justify-between text-slate-600 dark:text-slate-400">
                   <span>IVA Incluido (19%)</span>
                   <span className="font-semibold text-slate-800 dark:text-slate-200">
-                    $ {(iva)}
+                    $ {formatearPrecio(iva)}
                   </span>
                 </div>
 
