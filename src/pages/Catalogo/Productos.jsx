@@ -9,7 +9,6 @@ import { X, Plus, Minus, ShoppingCart, Tag, DollarSign, Waves, Loader2 } from "l
 const LIMITE = 12;
 
 function formatearPrecio(valor) {
-  if (typeof valor !== "number") return "$0";
   return valor.toLocaleString("es-CO", {
     style: "currency",
     currency: "COP",

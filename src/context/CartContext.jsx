@@ -68,14 +68,20 @@ export function CartProvider({ children }) {
 
     const totalItems = carrito.reduce((acc, item) => acc + item.cantidad, 0);
 
-    const subtotalGeneral = useMemo(
+   const totalConIva = useMemo(
         () => carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0),
         [carrito]
     );
 
-    const iva = useMemo(() => subtotalGeneral * TASA_IVA, [subtotalGeneral]);
+    const subtotalGeneral = useMemo(
+        () => totalConIva / (1 + TASA_IVA),
+        [totalConIva]
+    );
 
-    const totalConIva = useMemo(() => subtotalGeneral - iva, [subtotalGeneral, iva]);
+    const iva = useMemo(
+        () => totalConIva - subtotalGeneral,
+        [totalConIva, subtotalGeneral]
+    );
 
     return (
         <CartContext.Provider
