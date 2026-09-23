@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { User, Mail, LogOut, X, ShieldCheck, ExternalLink } from "lucide-react";
+import { Mail, LogOut, X, ShieldCheck, ExternalLink } from "lucide-react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import perfil from "../../assets/descarga (3).jpg"; 
 
 function Perfil({ onCerrar }) {
   const { usuario, cerrarSesion } = useAuth();
@@ -60,7 +61,7 @@ function Perfil({ onCerrar }) {
       <div className="flex flex-col items-center text-center pt-2">
         <div className="relative mb-3">
           <div className="w-16 h-16 rounded-full bg-linear-to-tr from-cyan-600 to-sky-500 flex items-center justify-center shadow-md border-2 border-white dark:border-slate-800">
-            <User size={28} className="text-white" />
+            <img className="w-full h-full object-cover rounded-lg" src={perfil} alt="Foto de perfil" />
           </div>
         </div>
 

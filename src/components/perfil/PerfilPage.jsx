@@ -3,6 +3,7 @@ import { User, Mail, ArrowLeft, LogOut, ShieldCheck } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth } from "../../context/AuthContext";
+import perfil from "../../assets/descarga (3).jpg"; 
 
 function PerfilPage() {
   const { usuario, cerrarSesion } = useAuth();
@@ -74,7 +75,7 @@ function PerfilPage() {
           <div className="flex flex-col sm:flex-row items-center gap-6 pb-8 border-b border-slate-100 dark:border-slate-800">
             <div className="relative">
               <div className="w-24 h-24 rounded-full bg-linear-to-tr from-cyan-600 to-sky-500 flex items-center justify-center border-4 border-white dark:border-slate-800 shadow-lg shrink-0">
-                <User size={46} className="text-white" />
+                <img className="w-full h-full object-cover rounded-lg" src={perfil} alt="Foto de perfil" />
               </div>
             </div>
 
@@ -104,21 +105,6 @@ function PerfilPage() {
                   </p>
                 </div>
               </div>
-
-              {/* Rol / Nivel si está presente */}
-              {(usuario.rol || usuario.role) && (
-                <div className="bg-slate-50 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800 p-4 rounded-2xl flex items-center gap-3">
-                  <div className="p-2.5 bg-emerald-100 dark:bg-emerald-950/60 rounded-xl text-emerald-700 dark:text-emerald-300 shadow-xs">
-                    <ShieldCheck size={20} />
-                  </div>
-                  <div className="overflow-hidden">
-                    <p className="text-xs text-slate-500 dark:text-slate-400 font-semibold">Rol del Usuario</p>
-                    <p className="text-sm font-bold text-slate-800 dark:text-slate-100 truncate capitalize">
-                      {usuario.rol || usuario.role}
-                    </p>
-                  </div>
-                </div>
-              )}
             </div>
           </div>
 

@@ -7,6 +7,7 @@ import { useAuth } from "../../context/AuthContext";
 import Perfil from "../perfil/Perfil";
 import Login from "../auth/Login";
 import pepe from "../../assets/pepe.jpg";
+import perfil from "../../assets/descarga (3).jpg"; 
 
 function Header() {
   const { tema, cambiarTema } = useTheme();
@@ -60,7 +61,7 @@ function Header() {
                   title="Ver perfil"
                 >
                   <div className="w-7 h-7 rounded-full bg-cyan-600 text-white flex items-center justify-center text-xs font-bold shadow-xs">
-                    <User size={15} />
+                    <img className="w-full h-full object-cover rounded-lg" src={perfil} alt="Foto de perfil" />
                   </div>
                   <span className="hidden sm:inline-block text-xs font-bold text-slate-700 dark:text-slate-200 max-w-25 truncate">
                     {usuario?.nombre || usuario?.correo?.split("@")[0] || usuario?.email?.split("@")[0] || "Surfer"}
